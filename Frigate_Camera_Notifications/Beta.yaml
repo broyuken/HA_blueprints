@@ -137,6 +137,8 @@ blueprint:
                   value: "{{ label }}{{ ' was' if type == 'end' else '' }} detected on the {{ camera_name }} camera{{' in the ' if after_zones|length}}{{ after_zones | join(', ') | replace('_', ' ' ) | title }}."
                 - label: "Long with a timestamp HH:MM"
                   value: "{{ label }}{{ ' was' if type == 'end' else '' }} detected on the {{ camera_name }} camera{{' in the ' if after_zones|length}}{{ after_zones | join(', ') | replace('_', ' ' ) | title }} at {{event['after']['start_time']|timestamp_custom('%H:%M')}}."
+                  label: "Doorbell Notification"
+                  value: "🔔 {{ label }}{{ ' was' if type == 'end' else ' is' }} at the {{ camera_name }}"
               custom_value: true
         update_sub_label:
           name: Update Sub Labels (Advanced)
@@ -379,6 +381,11 @@ blueprint:
           name: Group
           description: The group name that will determine if notifications are grouped on your mobile device. If you want notifications grouped by camera, ensure it contains {{camera}}
           default: "{{camera}}-frigate-notification"
+          selector:
+            select:
+              options:
+                - {{camera}}-frigate-notification
+                - {{camera}}-frigate-doorbell-notification
         tag:
           name: Tag
           description: The Tag is used to identify individual notifications in order to replace them with updated images/text. Default is the Event ID 
@@ -501,6 +508,7 @@ blueprint:
             select:
               options:
                 - person
+                - visitor
                 - dog
                 - cat
                 - car
@@ -707,6 +715,10 @@ blueprint:
                   value: /ccab4aaf_frigate-fa/ingress
                 - label: Open Frigate (proxy)
                   value: /ccab4aaf_frigate-proxy/ingress
+                - label: View Stream (Frigate Ingress)
+                  value: /frigate?index=%23{{camera}}
+                - label: View Event (Frigate Ingress)
+                  value: /frigate?index=review?id={{review_id}}
                 - label: Open Reolink App (Android)
                   value: app://com.mcu.reolink
                 - label: None (Android)
@@ -747,6 +759,10 @@ blueprint:
                   value: /ccab4aaf_frigate-fa/ingress
                 - label: Open Frigate (proxy)
                   value: /ccab4aaf_frigate-proxy/ingress
+                - label: View Stream (Frigate Ingress)
+                  value: /frigate?index=%23{{camera}}
+                - label: View Event (Frigate Ingress)
+                  value: /frigate?index=review?id={{review_id}}
                 - label: Open Reolink App (Android)
                   value: app://com.mcu.reolink
                 - label: Custom Action (Manual Trigger)
@@ -787,6 +803,10 @@ blueprint:
                   value: /ccab4aaf_frigate-fa/ingress
                 - label: Open Frigate (proxy)
                   value: /ccab4aaf_frigate-proxy/ingress
+                - label: View Stream (Frigate Ingress)
+                  value: /frigate?index=%23{{camera}}
+                - label: View Event (Frigate Ingress)
+                  value: /frigate?index=review?id={{review_id}}
                 - label: Open Reolink App (Android)
                   value: app://com.mcu.reolink
                 - label: Custom Action (Manual Trigger)
@@ -827,6 +847,10 @@ blueprint:
                   value: /ccab4aaf_frigate-fa/ingress
                 - label: Open Frigate (proxy)
                   value: /ccab4aaf_frigate-proxy/ingress
+                - label: View Stream (Frigate Ingress)
+                  value: /frigate?index=%23{{camera}}
+                - label: View Event (Frigate Ingress)
+                  value: /frigate?index=review?id={{review_id}}                  
                 - label: Open Reolink App (Android)
                   value: app://com.mcu.reolink
                 - label: Custom Action (Manual Trigger)
