@@ -12,7 +12,7 @@ blueprint:
       - Frigate Cameras
       - Doorbell Button Press Entity (binary sensor to let frigate know the doorbell has been pressed)
   domain: automation
-  source_url: https://github.com/SgtBatten/HA_blueprints/blob/main/Frigate_Camera_Notifications/doorbell_notification.yaml
+  source_url: https://github.com/SgtBatten/HA_blueprints/blob/main/Frigate_Camera_Notifications/doorbell_event.yaml
   input:
     doorbell_camera:
       name: Frigate Doorbell Cameras
