@@ -384,8 +384,8 @@ blueprint:
           selector:
             select:
               options:
-                - {{camera}}-frigate-notification
-                - {{camera}}-frigate-doorbell-notification
+                - "{{camera}}-frigate-notification"
+                - "{{camera}}-frigate-doorbell-notification"
         tag:
           name: Tag
           description: The Tag is used to identify individual notifications in order to replace them with updated images/text. Default is the Event ID 
